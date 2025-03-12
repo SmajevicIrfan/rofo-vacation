@@ -7,15 +7,15 @@
 #include "nob.h"
 
 #ifdef _WIN32
-#define INCLUDE "-Iinclude", "-Ivendor\\PDFWriter\\include\\PDFWriter", \
-                "-Ivendor\\PDFWriter\\include\\FreeType\\include"
-#define LIBRARY_PATHS "-Lvendor\\PDFWriter\\lib"
+#define INCLUDE "-Iinclude", "-Ithird-party\\PDFWriter\\include\\PDFWriter", \
+                "-Ithird-party\\PDFWriter\\include\\FreeType\\include"
+#define LIBRARY_PATHS "-Lthird-party\\PDFWriter\\lib"
 #define SOURCE "src\\main.cpp", "src\\PDFLayout.cpp", "src\\RoFoVacationLayout.cpp"
 #define OUTPUT "build\\RoFoVacation.exe"
 #else
-#define INCLUDE "-Iinclude", "-Ivendor/PDFWriter/include/PDFWriter", \
-                "-Ivendor/PDFWriter/include/FreeType/include"
-#define LIBRARY_PATHS "-Lvendor/PDFWriter/lib"
+#define INCLUDE "-Iinclude", "-Ithird-party/PDFWriter/include/PDFWriter", \
+                "-Ithird-party/PDFWriter/include/FreeType/include"
+#define LIBRARY_PATHS "-Lthird-party/PDFWriter/lib"
 #define SOURCE "src/main.cpp", "src/PDFLayout.cpp", "src/RoFoVacationLayout.cpp"
 #define OUTPUT "build/RoFoVacation"
 #endif
