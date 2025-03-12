@@ -3,6 +3,7 @@
 #include "PDFWriter.h"
 #include "PDFPage.h"
 #include "PageContentContext.h"
+#include "xlnt/xlnt.hpp"
 
 #include "RoFoVacationLayout.h"
 
@@ -21,7 +22,10 @@ int main(void)
 
     do
     {
-        status = pdfWriter.StartPDF(scBasePath + "PDFWriterTest.pdf", ePDFVersion15, LogConfiguration::DefaultLogConfiguration(), PDFCreationSettings(true, true));
+        status = pdfWriter.StartPDF(scBasePath + "PDFWriterTest.pdf",
+                                    ePDFVersion15,
+                                    LogConfiguration::DefaultLogConfiguration(),
+                                    PDFCreationSettings(true, true));
 
         if (PDFHummus::eSuccess != status)
             break;
