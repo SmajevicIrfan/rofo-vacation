@@ -45,6 +45,10 @@
 .history
 .ionide
 
+### VisualStudio ###
+.vs/*
+CppProperties.json
+
 # Old nob files
 nob.old
 nob.*.old

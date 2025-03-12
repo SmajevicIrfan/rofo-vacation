@@ -22,11 +22,10 @@
 #define OUTPUT "build/RoFoVacation"
 #endif
 
-#define COMMON_CFLAGS "-Wall", "-Wextra", "-pedantic", "-ggdb"
+#define COMMON_CFLAGS "-Wall", "-Wextra", "-pedantic", "-g", "-O0"
 #define LIBRARIES "-lPDFWriter", "-lZlib", "-lFreeType", "-lLibAesgm", "-lLibJpeg", "-lLibPng", "-lLibTiff", \
                   "-lxlnt"
-#define STATIC_CFLAGS "-Xclang", "-flto", "-fuse-ld=lld", "-fuse-cxa-atexit", \
-                      "-D_MT", "-DSTATIC_BUILD", "-DwxUSE_STATIC", "-static"
+#define STATIC_CFLAGS "-Xclang", "-D_MT", "-DSTATIC_BUILD", "-static", "-DXLNT_STATIC"
 
 int main(int argc, char **argv)
 {
