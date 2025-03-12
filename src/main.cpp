@@ -1,14 +1,17 @@
 #include <iostream>
+
 #include "PDFWriter.h"
 #include "PDFPage.h"
 #include "PageContentContext.h"
 
+#include "RoFoVacationLayout.h"
+
 #ifdef _WIN32
 static const std::string scBasePath = ".\\build\\";
-static const std::string scFontsPath = ".\\Resources\\Fonts\\";
+static const std::string scFontsPath = ".\\resources\\fonts\\";
 #else
 static const std::string scBasePath = "./build/";
-static const std::string scFontsPath = "./Resources/Fonts/";
+static const std::string scFontsPath = "./resources/fonts/";
 #endif
 
 int main(void)
@@ -18,47 +21,47 @@ int main(void)
 
     do
     {
-        status = pdfWriter.StartPDF(scBasePath + "PDFWriterTest.pdf", ePDFVersion15);
+        status = pdfWriter.StartPDF(scBasePath + "PDFWriterTest.pdf", ePDFVersion15, LogConfiguration::DefaultLogConfiguration(), PDFCreationSettings(true, true));
 
         if (PDFHummus::eSuccess != status)
             break;
 
-        PDFPage *pdfPage = new PDFPage();
-        pdfPage->SetMediaBox(PDFRectangle(0, 0, 595, 842));
+        struct RoFoVacationLayout layout;
+        RoFoVacationLayoutData data(
+            2025,
+            "Neko Nekić",
+            "Marketing",
+            "Veleprodaja",
+            20, 5, 1,
+            "01.02.2025",
+            "12.02.2025",
+            "13.02.2025",
+            12,
+            14,
+            "Nekalo Nekalić");
 
-        PageContentContext *pageContentContext = pdfWriter.StartPageContentContext(pdfPage);
-
-        PDFUsedFont *font = pdfWriter.GetFontForFile(scFontsPath + "times.ttf");
-        if (NULL == font)
+        if (!layout.loadAssets(pdfWriter))
         {
+            fprintf(stderr, "[ERROR] Failed to load assets\n");
             status = PDFHummus::eFailure;
             break;
         }
 
-        pageContentContext->k(0, 0, 0, 1);
-
-        pageContentContext->BT();
-        pageContentContext->Tf(font, 1);
-        pageContentContext->Tm(30, 0, 0, 30, 20, 20);
-        pageContentContext->Tj("Hello World");
-        pageContentContext->ET();
-
-        status = pdfWriter.EndPageContentContext(pageContentContext);
+        status = layout.render(pdfWriter, data);
         if (PDFHummus::eSuccess != status)
+        {
+            fprintf(stderr, "[ERROR] Failed to render layout\n");
             break;
-
-        status = pdfWriter.WritePageAndRelease(pdfPage);
-        if (PDFHummus::eSuccess != status)
-            break;
+        }
 
         pdfWriter.EndPDF();
     } while (false);
 
     if (PDFHummus::eSuccess == status)
-        std::cout << "Succeeded in creating PDF writer" << std::endl;
+        std::cout << "Succeeded in creating PDF file" << std::endl;
     else
     {
-        std::cout << "Failed in creating PDF writer" << std::endl;
+        std::cout << "Failed in creating PDF file" << std::endl;
         return 1;
     }
 
