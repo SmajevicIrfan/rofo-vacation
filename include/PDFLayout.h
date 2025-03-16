@@ -7,10 +7,7 @@
 #include "PageContentContext.h"
 #include "PDFUsedFont.h"
 
-struct PDFLayoutData
-{
-    virtual ~PDFLayoutData() {}
-};
+#include "PDFLayoutData.h"
 
 struct PDFLayout
 {
@@ -37,5 +34,5 @@ struct PDFLayout
                        double maxWidth);
 
     virtual bool loadAssets(PDFWriter &pdfWriter) = 0;
-    virtual EStatusCode render(PDFWriter &pdfWriter, PDFLayoutData &data) = 0;
+    virtual EStatusCode render(PDFWriter &pdfWriter, const PDFLayoutData &data) = 0;
 };

@@ -11,14 +11,14 @@
                 "-Ithird-party\\PDFWriter\\include\\FreeType\\include",      \
                 "-Ithird-party\\xlnt\\include"
 #define LIBRARY_PATHS "-Lthird-party\\PDFWriter\\lib", "-Lthird-party\\xlnt\\lib"
-#define SOURCE "src\\main.cpp", "src\\PDFLayout.cpp", "src\\RoFoVacationLayout.cpp"
+#define SOURCE "src\\main.cpp", "src\\PDFLayout.cpp", "src\\RoFoVacationLayout.cpp", "src\\RoFoVacationLayoutData.cpp"
 #define OUTPUT "build\\RoFoVacation.exe"
 #else
 #define INCLUDE "-Iinclude", "-Ithird-party/PDFWriter/include/PDFWriter", \
                 "-Ithird-party/PDFWriter/include/FreeType/include",       \
                 "-Ithird-party/xlnt/include"
 #define LIBRARY_PATHS "-Lthird-party/PDFWriter/lib", "-Lthird-party/xlnt/lib"
-#define SOURCE "src/main.cpp", "src/PDFLayout.cpp", "src/RoFoVacationLayout.cpp"
+#define SOURCE "src/main.cpp", "src/PDFLayout.cpp", "src/RoFoVacationLayout.cpp", "src/RoFoVacationLayoutData.cpp"
 #define OUTPUT "build/RoFoVacation"
 #endif
 

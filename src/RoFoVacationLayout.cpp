@@ -1,4 +1,5 @@
 #include "RoFoVacationLayout.h"
+#include "RoFoVacationLayoutData.h"
 
 #ifdef _WIN32
 static const std::string scFontsPath = ".\\resources\\fonts\\";
@@ -48,9 +49,9 @@ bool RoFoVacationLayout::loadAssets(PDFWriter &pdfWriter)
     return timesFont && timesBoldFont;
 }
 
-EStatusCode RoFoVacationLayout::render(PDFWriter &pdfWriter, PDFLayoutData &data)
+EStatusCode RoFoVacationLayout::render(PDFWriter &pdfWriter, const PDFLayoutData &data)
 {
-    RoFoVacationLayoutData *vacationData = dynamic_cast<RoFoVacationLayoutData *>(&data);
+    const RoFoVacationLayoutData *vacationData = dynamic_cast<const RoFoVacationLayoutData *>(&data);
     if (!vacationData)
         return PDFHummus::eFailure;
 
