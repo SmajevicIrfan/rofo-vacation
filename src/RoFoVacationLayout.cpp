@@ -1,11 +1,7 @@
 #include "RoFoVacationLayout.h"
 #include "RoFoVacationLayoutData.h"
 
-#ifdef _WIN32
-static const std::string scFontsPath = ".\\resources\\fonts\\";
-#else
-static const std::string scFontsPath = "./resources/fonts/";
-#endif
+static const std::string scFontsPath = "./resources/fonts/";\
 
 enum Case
 {

@@ -7,22 +7,18 @@
 #include "nob.h"
 
 #ifdef _WIN32
-#define INCLUDE "-Iinclude", "-Ithird-party\\PDFWriter\\include\\PDFWriter", \
-                "-Ithird-party\\PDFWriter\\include\\FreeType\\include",      \
-                "-Ithird-party\\xlnt\\include"
-#define LIBRARY_PATHS "-Lthird-party\\PDFWriter\\lib", "-Lthird-party\\xlnt\\lib"
-#define SOURCE "src\\main.cpp", "src\\PDFLayout.cpp", "src\\RoFoVacationLayout.cpp", "src\\RoFoVacationLayoutData.cpp"
-#define OUTPUT "build\\RoFoVacation.exe"
+#define OUTPUT "build/RoFoVacation.exe"
 #else
+#define OUTPUT "build/RoFoVacation"
+#endif // _WIN32
+
 #define INCLUDE "-Iinclude", "-Ithird-party/PDFWriter/include/PDFWriter", \
                 "-Ithird-party/PDFWriter/include/FreeType/include",       \
                 "-Ithird-party/xlnt/include"
 #define LIBRARY_PATHS "-Lthird-party/PDFWriter/lib", "-Lthird-party/xlnt/lib"
 #define SOURCE "src/main.cpp", "src/PDFLayout.cpp", "src/RoFoVacationLayout.cpp", "src/RoFoVacationLayoutData.cpp"
-#define OUTPUT "build/RoFoVacation"
-#endif
 
-#define COMMON_CFLAGS "-Wall", "-Wextra", "-pedantic", "-g", "-O0"
+#define COMMON_CFLAGS "-Wall", "-Wextra", "-pedantic", "-g"
 #define LIBRARIES "-lPDFWriter", "-lZlib", "-lFreeType", "-lLibAesgm", "-lLibJpeg", "-lLibPng", "-lLibTiff", \
                   "-lxlnt"
 #define STATIC_CFLAGS "-Xclang", "-D_MT", "-DSTATIC_BUILD", "-static", "-DXLNT_STATIC"
